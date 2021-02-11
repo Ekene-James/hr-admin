@@ -1,0 +1,57 @@
+
+@mixin flex-boxs($direction : row) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: $direction;
+}
+.container{
+    @include flex-boxs(column);
+    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(backgroundImg.jpg) no-repeat center center fixed;
+    height: 100vh;
+    .form{
+
+        background-color: rgb(248, 246, 250);
+        max-width: 35%;
+        padding: 10px;
+        height: 60vh;
+        border-radius: 10px;
+        .top-bar{
+            background : #0186a7;
+            height : 35px;
+            padding : 7px;
+            color: #f0f2f7;
+            width: 80%;
+            transform: translateY(-20px);
+            
+            margin: 0 auto;
+        }
+        .err{
+            width: 100%;
+            background: red;
+            color: white;
+            margin: 0 20px;
+            padding: 5px 2px;
+        }
+
+        .btn-container{
+            margin-top: 100px;
+            @include flex-boxs(column);
+            .button{
+                width: 100%;
+                margin-bottom: 20px;
+            }
+            .second-button{
+                width: 100%;
+                background: white;
+                color: black;
+                border: none;
+                text-transform: none;
+               
+            }
+
+
+        }
+    }
+}

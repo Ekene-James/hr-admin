@@ -1,11 +1,12 @@
 import React from 'react';
 import clsx from 'clsx';
+import { connect } from "react-redux";
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
+
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
@@ -16,7 +17,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Button from '@material-ui/core/Button';
-
+import LockIcon from '@material-ui/icons/Lock';
 import GroupIcon from '@material-ui/icons/Group';
 import {useStyles} from '../styles/style'
 import Fab from '@material-ui/core/Fab';
@@ -24,11 +25,12 @@ import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
-
+import GitHubIcon from '@material-ui/icons/GitHub';
 
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import { logOut } from '../redux/actions/authActions';
 
 
 
@@ -46,6 +48,9 @@ import { Link } from 'react-router-dom/cjs/react-router-dom.min';
   const handleDrawerClose = () => {
     setOpen(false);
   };
+  const logout = () => {
+    props.logOut()
+  } 
 
   return (
     <div className={classes.root}>
@@ -91,7 +96,7 @@ import { Link } from 'react-router-dom/cjs/react-router-dom.min';
         <AccountBoxIcon fontSize="large" />
       </Fab>
           </ListItemIcon>
-          <ListItemText primary="Lawson Loctech" />
+          <ListItemText className={classes.itemText} primary="Lawson Loctech" />
         </ListItem>
 
         
@@ -121,25 +126,25 @@ import { Link } from 'react-router-dom/cjs/react-router-dom.min';
        
       </Button>
       <div>
-      <Button
-        disableElevation
-        variant="contained"
-        color="primary"
-        size="small"
-        className={classes.buttonTwo}
-        startIcon={<AddCircleOutlineIcon/>}
-        
-      >
-          <Link className={classes.link} to='/employees-management/add-employees'>
-             Add Employee
-          </Link>
-       
-      </Button>
+    
 
       </div>
         
         </AccordionDetails>
       </Accordion>
+      <Divider />
+      <ListItem button>
+          
+        <LockIcon />
+      
+          <ListItemText  onClick={ logout} className={classes.itemText} primary="LogOut" />
+        </ListItem>
+      <ListItem button>
+          
+        <GitHubIcon />
+      
+          <Link to='/github'> <ListItemText  className={classes.itemText} primary="Link To the github repo" /></Link>
+        </ListItem>
        
      
         
@@ -156,4 +161,4 @@ import { Link } from 'react-router-dom/cjs/react-router-dom.min';
     </div>
   );
 }
-export default Dashboard;
+export default connect(null, {logOut})(Dashboard);

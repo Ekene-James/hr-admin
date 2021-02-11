@@ -1,0 +1,36 @@
+.e-cont {
+  background: white;
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+          box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+  margin-top: 40px;
+}
+
+.e-cont .tBar {
+  width: 98%;
+  background: #1791a7;
+  height: 30px;
+  margin: 0 auto;
+  color: whitesmoke;
+  padding: 5px;
+  -webkit-transform: translateY(-15px);
+          transform: translateY(-15px);
+}
+
+.e-cont .grid-cont {
+  padding: 40px;
+}
+
+.e-cont .grid-cont .btn {
+  margin-bottom: 10px;
+  background: #10505c;
+}
+
+.e-cont .grid-cont .btn .link {
+  color: white;
+  text-decoration: none;
+}
+
+.e-cont .grid-cont .divider {
+  margin-bottom: 40px;
+}
+/*# sourceMappingURL=emanagement.css.map */

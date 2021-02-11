@@ -52,6 +52,9 @@ export  const useStyles = makeStyles((theme) => ({
     hide: {
       display: 'none',
     },
+    itemText : {
+      marginLeft : '9px'
+    },
     drawer: {
       width: drawerWidth,
       flexShrink: 0,

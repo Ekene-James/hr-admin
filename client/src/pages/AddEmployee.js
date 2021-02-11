@@ -69,6 +69,7 @@ export class CustomizedSteppers extends Component {
             employmentType: '',
             employeeDesignation: '',
             employeeDepartment: '',
+            employeeConfirmation: '',
             employeeStatus: '',
             employeeLocation: '',
             grossSalary: '',
@@ -135,6 +136,7 @@ export class CustomizedSteppers extends Component {
           employeeDepartment,
           employeeStatus,
           employeeLocation,
+          employeeConfirmation,
           grossSalary,
           doe,
           dol,
@@ -190,6 +192,7 @@ export class CustomizedSteppers extends Component {
           employeeDepartment,
           employeeStatus,
           employeeLocation,
+          employeeConfirmation,
           grossSalary,
           doe,
           dol,
@@ -398,7 +401,7 @@ export class CustomizedSteppers extends Component {
                   activeStep === steps.length ? (
                     <div >
                       <div className={classes.btnBody}>
-                  <Button onClick={this.handleReset} className={classes.button}>
+                  <Button onClick={this.handleReset} variant="contained" className={classes.button}>
                     Go back to Review Forms
                   </Button>
                     <Button  variant="contained"
@@ -411,7 +414,7 @@ export class CustomizedSteppers extends Component {
                       </div>
 
                       {
-                        !this.state.completed ? ('ooops, looks like you didnt fill some fields properly, please go back and review') : ('')
+                        !this.state.completed ? (<div className={classes.err}>ooops, looks like you didnt fill some fields properly, please go back and review</div>) : ('')
                       }
 
                    
@@ -419,7 +422,7 @@ export class CustomizedSteppers extends Component {
                   ) : (
                     <div className={classes.btnBody}>
               
-                    <Button disabled={activeStep === 0} onClick={this.handleBack} className={classes.button}>
+                    <Button disabled={activeStep === 0} onClick={this.handleBack} className={classes.button} variant="contained">
                       Back
                     </Button>
                     <Button

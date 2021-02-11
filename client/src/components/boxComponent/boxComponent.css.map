@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "boxComponent.scss"
+    ],
+    "names": [],
+    "file": "boxComponent.css"
+}

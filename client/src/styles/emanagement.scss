@@ -1,0 +1,33 @@
+
+
+.e-cont{
+    background: white;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+    margin-top: 40px;
+   
+    .tBar{
+        width: 98%;
+        background: rgb(23, 145, 167);
+        height: 30px;
+        margin: 0 auto;
+        color: whitesmoke;
+        padding: 5px;
+        transform: translateY(-15px);
+    }
+    .grid-cont{
+        padding: 40px;
+        .btn{
+            margin-bottom: 10px;
+            background: rgb(16, 80, 92);
+            .link{
+                color: white;
+                text-decoration: none;
+            }
+        }
+        .divider{
+            margin-bottom: 40px;
+        }
+
+    }
+
+}

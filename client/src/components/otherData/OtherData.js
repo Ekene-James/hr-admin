@@ -10,9 +10,7 @@ import Divider from '@material-ui/core/Divider';
 
 
 import Typography from '@material-ui/core/Typography';
-import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
 
-import BrandingWatermarkIcon from '@material-ui/icons/BrandingWatermark';
 
 export class OtherData extends Component {
  
