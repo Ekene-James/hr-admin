@@ -51,17 +51,59 @@ export class CustomizedSteppers extends Component {
      
         this.state = { 
             activeStep: 1,
-          
             firstName: '',
             lastName: '',
             personalEmail: '',
             otherName : '',
             gender : '',
             maritalStatus : '',
-
-
-            occupation: '',
-            city: '',
+            phoneNumber : '',
+            dob : '',
+            nationality : '',
+            currentAddress : '',
+            permanentAddress : '',
+            state : '',
+            town : '',
+            staffId : '',
+            officialEmail: '',
+            employmentType: '',
+            employeeDesignation: '',
+            employeeDepartment: '',
+            employeeStatus: '',
+            employeeLocation: '',
+            grossSalary: '',
+            doe: '',
+            dol: '',
+            refereeName1: '',
+            refereeAddress1: '',
+            refereePhone1: '',
+            refereeName2: '',
+            refereeAddress2: '',
+            refereePhone2: '',
+            bankName: '',
+            accountNumber: '',
+            bankVerificationNumber: '',
+            pensionManager: '',
+            pensionNumber: '',
+            spouseFName: '',
+            spouseLName: '',
+            spousePhoneNumber: '',
+            spouseEmail: '',
+            numberOfChildren: '',
+            NOKFN: '',
+            NOKLN: '',
+            NOKPhone: '',
+            NOKAddress: '',
+            NOKEmail: '',
+            NOKRelationship: '',
+            emergName1: '',
+            emergAddress1: '',
+            emergPhone1: '',
+            emergName2: '',
+            emergAddress2: '',
+            emergPhone2: '',
+            errors : {},
+            completed : true
             
          };
       }
@@ -72,8 +114,116 @@ export class CustomizedSteppers extends Component {
 
     
        getStepContent= (step) =>{
-        const { firstName, lastName, personalEmail, occupation, city, bio } = this.state;
-        const values = { firstName, lastName, personalEmail, occupation, city, bio };
+        const { 
+          firstName,
+          lastName,
+          personalEmail,
+          otherName,
+          gender,
+          maritalStatus,
+          phoneNumber,
+          dob,
+          nationality,
+          currentAddress,
+          permanentAddress,
+          state,
+          town,
+          staffId,
+          officialEmail,
+          employmentType,
+          employeeDesignation,
+          employeeDepartment,
+          employeeStatus,
+          employeeLocation,
+          grossSalary,
+          doe,
+          dol,
+          refereeName1,
+          refereeAddress1,
+          refereePhone1,
+          refereeName2,
+          refereeAddress2,
+          refereePhone2,
+          bankName,
+          accountNumber,
+          bankVerificationNumber,
+          pensionManager,
+          pensionNumber,
+          spouseFName,
+          spouseLName,
+          spousePhoneNumber,
+          spouseEmail,
+          numberOfChildren,
+          NOKFN,
+          NOKLN,
+          NOKPhone,
+          NOKAddress,
+          NOKEmail,
+          NOKRelationship,
+          emergName1,
+          emergAddress1,
+          emergPhone1,
+          emergName2,
+          emergAddress2,
+          emergPhone2,
+          errors
+        
+        } = this.state;
+        const values = { 
+          firstName,
+          lastName,
+          personalEmail,
+          otherName,
+          gender,
+          maritalStatus,
+          phoneNumber,
+          dob,
+          nationality,
+          currentAddress,
+          permanentAddress,
+          state,
+          town,
+          staffId,
+          officialEmail,
+          employmentType,
+          employeeDesignation,
+          employeeDepartment,
+          employeeStatus,
+          employeeLocation,
+          grossSalary,
+          doe,
+          dol,
+          refereeName1,
+          refereeAddress1,
+          refereePhone1,
+          refereeName2,
+          refereeAddress2,
+          refereePhone2,
+          bankName,
+          accountNumber,
+          bankVerificationNumber,
+          pensionManager,
+          pensionNumber,
+          spouseFName,
+          spouseLName,
+          spousePhoneNumber,
+          spouseEmail,
+          numberOfChildren,
+          NOKFN,
+          NOKLN,
+          NOKPhone,
+          NOKAddress,
+          NOKEmail,
+          NOKRelationship,
+          emergName1,
+          emergAddress1,
+          emergPhone1,
+          emergName2,
+          emergAddress2,
+          emergPhone2,
+          errors
+
+         };
         switch (step) {
           case 0:
             return <PersonalData
@@ -106,6 +256,7 @@ export class CustomizedSteppers extends Component {
          })
      
     };
+
   
      handleBack = () => {
         return  this.setState({
@@ -121,6 +272,89 @@ export class CustomizedSteppers extends Component {
     };
     handleChange = input => e => {
         this.setState({ [input]: e.target.value });
+      };
+      formValidation = () => {
+        const { 
+          firstName,
+          lastName,
+          personalEmail,
+          otherName,
+          gender,
+          maritalStatus,
+          phoneNumber,
+          dob,
+          nationality,
+          currentAddress,
+          permanentAddress,
+          state,
+          town,
+          staffId,
+          officialEmail,
+          employmentType,
+          employeeDesignation,
+          employeeDepartment,
+          employeeStatus,
+          employeeLocation,
+          grossSalary,
+          doe,
+          dol,
+          refereeName1,
+          refereeAddress1,
+          refereePhone1,
+          refereeName2,
+          refereeAddress2,
+          refereePhone2,
+          bankName,
+          accountNumber,
+          bankVerificationNumber,
+          pensionManager,
+          pensionNumber,
+          spouseFName,
+          spouseLName,
+          spousePhoneNumber,
+          spouseEmail,
+          numberOfChildren,
+          NOKFN,
+          NOKLN,
+          NOKPhone,
+          NOKAddress,
+          NOKEmail,
+          NOKRelationship,
+          emergName1,
+          emergAddress1,
+          emergPhone1,
+          emergName2,
+          emergAddress2,
+          emergPhone2,
+          errors
+        
+        } = this.state;
+        let isValid = true;
+        const error = {}
+        if(bankVerificationNumber.trim().length < 6 ){
+          error.bankVerificationNumber = 'Bank verification Number must be greater than 6';
+          isValid = false;
+          this.setState({
+            completed : false
+          })
+        }
+        if(bankName.trim().length < 1 ){
+          error.bankName = 'please enter a bank name';
+          isValid = false;
+          this.setState({
+            completed : false
+          })
+        }
+        this.setState({errors : error})
+        return isValid
+
+      }
+    submit = e => {
+      e.preventDefault()
+      console.log(this.state)
+      const isValid = this.formValidation();
+    
+        
       };
 
     render() {
@@ -147,13 +381,14 @@ export class CustomizedSteppers extends Component {
               {activeStep === steps.length ? (
                 <div>
                   <Typography className={classes.instructions}>
-                    All steps completed - you&apos;re finished
+                    All Forms are filled, you can go back to the first page and review your inputs, Or click submit to Submit
                   </Typography>
                  
                 </div>
               ) : (
                 <div>
-                  <Typography className={classes.instructions}>{this.getStepContent(activeStep)}</Typography>
+                  <form className={classes.root} noValidate autoComplete="off">{this.getStepContent(activeStep)}</form>
+                  
                   
                 </div>
               )}
@@ -161,9 +396,26 @@ export class CustomizedSteppers extends Component {
           </div>
           {
                   activeStep === steps.length ? (
-                    <Button onClick={this.handleReset} className={classes.button}>
-                    Reset
+                    <div >
+                      <div className={classes.btnBody}>
+                  <Button onClick={this.handleReset} className={classes.button}>
+                    Go back to Review Forms
                   </Button>
+                    <Button  variant="contained"
+                      color="primary"
+                       onClick={this.submit} 
+                       className={classes.button}>
+                    Submit
+                  </Button>
+
+                      </div>
+
+                      {
+                        !this.state.completed ? ('ooops, looks like you didnt fill some fields properly, please go back and review') : ('')
+                      }
+
+                   
+                    </div>
                   ) : (
                     <div className={classes.btnBody}>
               
