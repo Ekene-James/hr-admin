@@ -25,7 +25,7 @@ dotenv.config({ path: "./config/config.env" });
 
 const app = express();
 
-//body parser
+
 app.use(express.json());
 
 app.use(cookieParser());
@@ -39,7 +39,7 @@ const limit = rateLimit({
 });
 app.use(limit);
 //set static folder
-app.use(express.static(path.join(__dirname, "public")));
+
 
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
@@ -63,12 +63,17 @@ app.use("/api/employees", employees);
 app.use("/api/auth", auth);
 
 app.use(errorHandler);
-if (process.env.NODE_ENV === "production") {
-  app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "public", "index.html"));
-  });
-}
 
+
+
+if (process.env.NODE_ENV === "production") {
+  //set static folder.
+  
+  app.use(express.static("client/build"));
+  app.get("*", (req, res) =>
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"))
+  );
+}
 const PORT = process.env.PORT || 5000;
 
 const server = app.listen(
