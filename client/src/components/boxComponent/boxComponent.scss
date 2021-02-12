@@ -1,0 +1,66 @@
+
+@mixin flex-boxs($direction : row) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: $direction;
+}
+.box-grid{
+    .box-main-cont{
+        
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+        padding: 6px;
+       width: 380px;
+       
+      
+        .box-grid-cont{
+            .box-contents-cont{
+                @include flex-boxs();
+                justify-content: space-between;
+                .icon{
+                    background: rgb(8, 128, 82);
+                    width: 50px;
+                    height: 50px;
+                    color: white;
+                    transform: translateY(-20px);
+                    padding: 10px;
+                    &.blue{
+                        background: rgb(53, 112, 240);
+                    }
+                    &.red{
+                        background: rgb(187, 14, 72);
+                        
+                    }
+                }
+                .text-cont{
+                    @include flex-boxs(column); 
+                    background: white;
+                    
+                    margin-left: 20px;
+                    text-align: right;
+                    
+                    span{
+                        font-size: 9px;
+                        margin-left: 10px;
+                        
+    
+                    }
+                    h1{
+                        margin: -8px 0 0 30px;
+                        font-weight: 100;
+                       
+    
+                    }
+                }
+                
+                
+            }
+            
+        }
+        .divider{
+            
+            margin-top: 25px ;
+        } 
+    }
+}

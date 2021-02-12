@@ -97,10 +97,11 @@ export const resetToken = () => dispatch => {
 
   export const registerUser =  (cred,history) =>async (dispatch) => {
     dispatch(clearErrors())
+    console.log(cred)
     
     try {
         dispatch(isLoading(true))
-         await axios.post("/api/auth/registerUser",cred)
+         await axios.post("/api/auth/register",cred)
          dispatch(isLoading(false))
        
       
@@ -110,7 +111,7 @@ export const resetToken = () => dispatch => {
     } catch (errors) {
      
        
-     console.log(errors.response)
+     console.log(errors)
       
        
      dispatch(isLoading(false))

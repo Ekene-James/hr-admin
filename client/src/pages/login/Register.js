@@ -40,13 +40,13 @@ export class Register extends Component {
                     <Grid item xs={12} >
                         <TextField
                             variant="outlined"
-                            label="Email*"
+                            label="Email"
                             required
                             onChange={this.handleChange}
                             defaultValue={email}
                             margin="normal"
                             fullWidth
-
+                            name='email'
                             InputProps={{
                             endAdornment: (
                             <InputAdornment position="end">
@@ -59,13 +59,14 @@ export class Register extends Component {
                     <Grid item xs={12} >
                         <TextField
                             variant="outlined"
-                            label="password*"
+                            label="password"
                             required
                             onChange={this.handleChange}
                             defaultValue={password}
                             margin="normal"
                             fullWidth
                             type="password"
+                            name="password"
                             InputProps={{
                             endAdornment: (
                             <InputAdornment position="end">

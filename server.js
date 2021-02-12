@@ -3,22 +3,21 @@ const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
 const path = require("path");
-const fileupload = require("express-fileupload");
+
+
 const cookieParser = require("cookie-parser");
 const helmet = require("helmet");
-const xss = require("xss-clean");
-const hpp = require("hpp");
+
 const cors = require("cors");
 const rateLimit = require("express-rate-limit");
 const mongoSanitize = require("express-mongo-sanitize");
 const colors = require("colors");
 
 //bring in the router files
-const bootcamp = require("./routes/bootcamps");
-const courses = require("./routes/courses");
+
+const employees = require("./routes/employees");
 const auth = require("./routes/auth");
-const admin = require("./routes/admin");
-const reviews = require("./routes/reviews");
+
 
 const errorHandler = require("./middleware/error");
 
@@ -28,12 +27,11 @@ const app = express();
 
 //body parser
 app.use(express.json());
-app.use(fileupload());
+
 app.use(cookieParser());
 app.use(mongoSanitize());
 app.use(helmet());
-app.use(xss());
-app.use(hpp());
+
 app.use(cors());
 const limit = rateLimit({
   windowMs: 10 * 60 * 1000, //10mins
@@ -47,7 +45,7 @@ if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
 //connect to db
-const db = require("./config/keys/keys").mongoURI;
+const db = process.env.MONGO_URI
 mongoose
   .connect(db, {
     useNewUrlParser: true,
@@ -60,17 +58,16 @@ mongoose
   .catch(err => console.log(`${err.message}`.red.bold));
 
 //mount the routers
-app.use("/api/v1/bootcamps", bootcamp);
-app.use("/api/v1/courses", courses);
-app.use("/api/v1/auth", auth);
-app.use("/api/v1/admin", admin);
-app.use("/api/v1/reviews", reviews);
+
+app.use("/api/employees", employees);
+app.use("/api/auth", auth);
+
 app.use(errorHandler);
-/*if (process.env.NODE_ENV === "production") {
+if (process.env.NODE_ENV === "production") {
   app.get("*", (req, res) => {
     res.sendFile(path.resolve(__dirname, "public", "index.html"));
   });
-}*/
+}
 
 const PORT = process.env.PORT || 5000;
 

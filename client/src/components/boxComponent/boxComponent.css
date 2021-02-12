@@ -1,1 +1,79 @@
-/* No CSS *//*# sourceMappingURL=boxComponent.css.map */
+.box-grid .box-main-cont {
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+          box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+  padding: 6px;
+  width: 380px;
+}
+
+.box-grid .box-main-cont .box-grid-cont .box-contents-cont {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.box-grid .box-main-cont .box-grid-cont .box-contents-cont .icon {
+  background: #088052;
+  width: 50px;
+  height: 50px;
+  color: white;
+  -webkit-transform: translateY(-20px);
+          transform: translateY(-20px);
+  padding: 10px;
+}
+
+.box-grid .box-main-cont .box-grid-cont .box-contents-cont .icon.blue {
+  background: #3570f0;
+}
+
+.box-grid .box-main-cont .box-grid-cont .box-contents-cont .icon.red {
+  background: #bb0e48;
+}
+
+.box-grid .box-main-cont .box-grid-cont .box-contents-cont .text-cont {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background: white;
+  margin-left: 20px;
+  text-align: right;
+}
+
+.box-grid .box-main-cont .box-grid-cont .box-contents-cont .text-cont span {
+  font-size: 9px;
+  margin-left: 10px;
+}
+
+.box-grid .box-main-cont .box-grid-cont .box-contents-cont .text-cont h1 {
+  margin: -8px 0 0 30px;
+  font-weight: 100;
+}
+
+.box-grid .box-main-cont .divider {
+  margin-top: 25px;
+}
+/*# sourceMappingURL=boxComponent.css.map */

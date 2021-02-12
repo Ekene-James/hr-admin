@@ -6,12 +6,20 @@ import AddEmployee from './pages/AddEmployee';
 import EManagement from './pages/EManagement';
 import Login from './pages/login/Login';
 import Register  from './pages/login/Register';
+import { connect } from "react-redux";
+import {  selectLoading} from './redux/reselectFunc/loadingReselect';
+import BackdropCompo from './components/boxComponent/backDrop/Backdrop';
 
-function App() {
+
+function App(props) {
+  if(props.loading){
+    return <BackdropCompo/>
+  }
   return (
    
        <Router> 
         <Switch>
+          
         <Route
                 exact
                 path="/"
@@ -37,5 +45,9 @@ function App() {
     
   );
 }
+const mapStateToProps = state => ({
+  loading: selectLoading(state),
 
-export default App;
+   
+  });
+export default connect(mapStateToProps)(App);
