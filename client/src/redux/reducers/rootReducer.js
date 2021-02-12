@@ -10,7 +10,7 @@ import contentsReducer from "./contentsReducer";
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["auth"]
+  whitelist: ["auth","employee"]
 };
 
 const rootReducer = combineReducers({
@@ -19,6 +19,6 @@ const rootReducer = combineReducers({
   error: errorReducer,
   loading: loadingReducer,
  
-  course : contentsReducer
+  employee : contentsReducer
 });
 export default persistReducer(persistConfig, rootReducer);

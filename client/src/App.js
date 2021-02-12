@@ -9,6 +9,7 @@ import Register  from './pages/login/Register';
 import { connect } from "react-redux";
 import {  selectLoading} from './redux/reselectFunc/loadingReselect';
 import BackdropCompo from './components/boxComponent/backDrop/Backdrop';
+import { selectIsAuthenticated } from './redux/reselectFunc/authReselect';
 
 
 function App(props) {
@@ -24,14 +25,24 @@ function App(props) {
                 exact
                 path="/"
                 render={() => {
-                    return (
-                      
-                      <Redirect to="/login" /> 
-                    )
+                  if(props.isAuthenticated){
+                    return  <Redirect to='/human-resource/employees-management' /> 
+                 
+
+                  }else{
+                    return  <Route  path='/' component={Login}/>
+              
+
+                  }
+
+                  
+                    
+                    
                 }}
               />
-        <Route exact path='/login' component={Login}/>
-        <Route exact path='/register' component={Register}/>
+              
+        
+        <Route  path='/register' component={Register}/>
         
           <Dashboard>
           <Route  path='/employees-management/add-employees' component={AddEmployee}/>
@@ -47,7 +58,7 @@ function App(props) {
 }
 const mapStateToProps = state => ({
   loading: selectLoading(state),
-
+  isAuthenticated : selectIsAuthenticated(state)
    
   });
 export default connect(mapStateToProps)(App);

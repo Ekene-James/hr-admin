@@ -2,9 +2,11 @@ const ErrorResponse = require("../utils/errorResponse");
 
 const errorHandler = (err, req, res, next) => {
   console.log(err.stack.red);
+  
 
   let error = { ...err };
   error.message = err.message;
+
 
   if (err.name === "CastError") {
     const message = `Resource not found with id of ${err.value}`;
@@ -12,9 +14,8 @@ const errorHandler = (err, req, res, next) => {
   }
   //mongoose duplicate key
   if (err.code === 11000) {
-    console.log(err)
-    const message = `Duplicate fieldValue entered`;
-    error = new ErrorResponse(message, 404);
+    
+    error = new ErrorResponse(err, 404);
   }
   if (err.name === "ValidationError") {
 

@@ -19,7 +19,10 @@ import PersonalData from '../components/personalData/PersonalData';
 import EmployeeInfo from '../components/employeeInfo/EmployeeInfo';
 import OtherData from '../components/otherData/OtherData';
 import BankPension from '../components/bankPension/BankPension';
-
+import { connect } from "react-redux";
+import { createEmployee } from '../redux/actions/contentAction';
+import { resetToken } from '../redux/actions/authActions';
+import { selectUser } from '../redux/reselectFunc/authReselect';
 function ColorlibStepIcon(props) {
   const classes = useColorlibStepIconStyles();
   const { active, completed } = props;
@@ -109,6 +112,11 @@ export class CustomizedSteppers extends Component {
          };
       }
     
+      componentDidMount(){
+        this.props.resetToken()
+       
+         
+     }
        getSteps =() => {
         return ['Personal Data', 'Employee Info', 'Bank and Pension', 'Other Data'];
       }
@@ -276,86 +284,14 @@ export class CustomizedSteppers extends Component {
     handleChange = input => e => {
         this.setState({ [input]: e.target.value });
       };
-      formValidation = () => {
-        const { 
-          firstName,
-          lastName,
-          personalEmail,
-          otherName,
-          gender,
-          maritalStatus,
-          phoneNumber,
-          dob,
-          nationality,
-          currentAddress,
-          permanentAddress,
-          state,
-          town,
-          staffId,
-          officialEmail,
-          employmentType,
-          employeeDesignation,
-          employeeDepartment,
-          employeeStatus,
-          employeeLocation,
-          grossSalary,
-          doe,
-          dol,
-          refereeName1,
-          refereeAddress1,
-          refereePhone1,
-          refereeName2,
-          refereeAddress2,
-          refereePhone2,
-          bankName,
-          accountNumber,
-          bankVerificationNumber,
-          pensionManager,
-          pensionNumber,
-          spouseFName,
-          spouseLName,
-          spousePhoneNumber,
-          spouseEmail,
-          numberOfChildren,
-          NOKFN,
-          NOKLN,
-          NOKPhone,
-          NOKAddress,
-          NOKEmail,
-          NOKRelationship,
-          emergName1,
-          emergAddress1,
-          emergPhone1,
-          emergName2,
-          emergAddress2,
-          emergPhone2,
-          errors
-        
-        } = this.state;
-        let isValid = true;
-        const error = {}
-        if(bankVerificationNumber.trim().length < 6 ){
-          error.bankVerificationNumber = 'Bank verification Number must be greater than 6';
-          isValid = false;
-          this.setState({
-            completed : false
-          })
-        }
-        if(bankName.trim().length < 1 ){
-          error.bankName = 'please enter a bank name';
-          isValid = false;
-          this.setState({
-            completed : false
-          })
-        }
-        this.setState({errors : error})
-        return isValid
-
-      }
+      
+    
     submit = e => {
       e.preventDefault()
-      console.log(this.state)
-      const isValid = this.formValidation();
+      
+      this.props.createEmployee(this.state)
+      
+      
     
         
       };
@@ -446,5 +382,4 @@ export class CustomizedSteppers extends Component {
  
 }
 
-
-export default withStyles(useStyles)(CustomizedSteppers)
+export default connect(null, {resetToken,createEmployee})(withStyles(useStyles)(CustomizedSteppers))

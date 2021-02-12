@@ -28,8 +28,8 @@ export class EmployeeInfo extends Component {
              variant="outlined"
               placeholder="Staff Id*"
               
-              onChange={handleChange('stafId')}
-              defaultValue={values.stafId}
+              onChange={handleChange('staffId')}
+              defaultValue={values.staffId}
               margin="normal"
               fullWidth
               
@@ -183,8 +183,8 @@ export class EmployeeInfo extends Component {
               select
               label ='Employment Location*'
               variant="outlined"
-              onChange={handleChange('employeeStatus')}
-              defaultValue={values.employeeStatus}
+              onChange={handleChange('employeeLocation')}
+              defaultValue={values.employeeLocation}
               margin="normal"
               fullWidth
               

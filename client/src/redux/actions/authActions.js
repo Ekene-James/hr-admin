@@ -20,6 +20,7 @@ import {
 
 
 export const login =  (cred,history) =>async (dispatch) => {
+    console.log('in login')
     dispatch(clearErrors())
     try {
         dispatch(isLoading(true))
@@ -97,12 +98,13 @@ export const resetToken = () => dispatch => {
 
   export const registerUser =  (cred,history) =>async (dispatch) => {
     dispatch(clearErrors())
-    console.log(cred)
+    
     
     try {
         dispatch(isLoading(true))
-         await axios.post("/api/auth/register",cred)
-         dispatch(isLoading(false))
+      const register  = await axios.post("/api/auth/register",cred)
+      console.log(register)   
+      dispatch(isLoading(false))
        
       
         history.push("/login")
@@ -111,7 +113,7 @@ export const resetToken = () => dispatch => {
     } catch (errors) {
      
        
-     console.log(errors)
+     console.log(errors.response.data)
       
        
      dispatch(isLoading(false))

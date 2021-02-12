@@ -2,6 +2,7 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const beautifyUnique = require('mongoose-beautiful-unique-validation');
 
 const UserSchema = new mongoose.Schema({
 
@@ -51,6 +52,6 @@ UserSchema.methods.matchPassword = async function(enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
 };
 
-
+UserSchema.plugin(beautifyUnique);
 
 module.exports = mongoose.model("User", UserSchema);

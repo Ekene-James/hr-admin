@@ -6,7 +6,7 @@ export const selectIsAuthenticated = createSelector(
     [selectAuth],
     auth => auth.isAuthenticated
   );
-export const selectUserType = createSelector(
+export const selectUser = createSelector(
     [selectAuth],
     auth => auth.user
   );

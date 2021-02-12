@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
               defaultValue={values.bankName}
               margin="normal"
               fullWidth
-              {...(values.errors.bankName && {error : true,helperText : values.errors.bankName })}
+             
              
             >
               <MenuItem value='Access Bank'>

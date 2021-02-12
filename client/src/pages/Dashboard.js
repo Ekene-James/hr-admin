@@ -143,7 +143,7 @@ import { logOut } from '../redux/actions/authActions';
           
         <GitHubIcon />
       
-          <Link to='/github'> <ListItemText  className={classes.itemText} primary="Link To the github repo" /></Link>
+          <Link to={{pathname : 'https://github.com/Ekene-James/loctech'}} target='_blanck'> <ListItemText  className={classes.itemText} primary="Link To the github repo" /></Link>
         </ListItem>
        
      

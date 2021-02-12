@@ -4,17 +4,17 @@ const express = require("express");
 const router = express.Router({ mergeParams: true });
 const {
   
-  getCourse,
-  createCourse,
+  getEmployee,
+  createEmployee,
  
 } = require("../controller/employee");
 const { protect } = require("../middleware/authMiddleware");
 
 router
   .route("/")
-  .post(protect, createCourse);
+  .post(protect, createEmployee);
 router
-  .route("/:id")
-  .get(getCourse)
+  .route("/")
+  .get(protect,getEmployee)
   
 module.exports = router;

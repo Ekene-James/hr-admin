@@ -36,7 +36,7 @@ export class Register extends Component {
                 <form onSubmit = {this.onSubmit} className='form'>
                     
                     <Grid container spacing={3}>
-                    <div className='top-bar'>Login</div>
+                    <div className='top-bar'>Register</div>
                     <Grid item xs={12} >
                         <TextField
                             variant="outlined"
@@ -89,7 +89,7 @@ export class Register extends Component {
                         onClick= {this.onSubmit}
                         endIcon={<ExitToAppIcon/>}
                       >
-                        Lets Go
+                        Register
                     </Button>
                     <Button
                       className ='second-button'

@@ -1,18 +1,18 @@
 import {
-    GET_CONTENTS,
+  GET_EMPLOYEE,
     
  
   } from "../type";
 const initialState= {
-    contents: ''
+    employee: ''
 }
 const contentsReducer = (state=initialState, action) => {
     switch(action.type){
       
-          case GET_CONTENTS: {
+          case GET_EMPLOYEE: {
             return {
               ...state,
-              contents: action.payload
+              employee: action.payload
             };
           }
           
