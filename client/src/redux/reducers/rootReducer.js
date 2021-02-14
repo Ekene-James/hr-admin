@@ -11,7 +11,7 @@ import contentsReducer from "./contentsReducer";
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["auth","employee","form"]
+  whitelist: ["auth","form"]
 };
 
 const rootReducer = combineReducers({

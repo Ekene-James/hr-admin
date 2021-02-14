@@ -10,8 +10,6 @@ function BoxComponent(props) {
     return (
         
              <div  className='box-main-cont'>
-           
-
            <div className='box-grid-cont' item >
                <div className='box-contents-cont'>
                    

@@ -44,11 +44,11 @@ export const login =  (cred,history,reset) =>async (dispatch) => {
             payload: data
         });
       
-        history.push("/")
+        history.push("/dashboard")
        
         
     } catch (errors) {
-        console.log(errors)
+        console.error(errors)
        
         dispatch(isLoading(false))
         dispatch({

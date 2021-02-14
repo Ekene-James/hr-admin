@@ -3,6 +3,7 @@ import {
     
  
   } from "../type";
+import { details } from "./employeeDataUtils";
 const initialState= {
     employee: ''
 }
@@ -12,7 +13,7 @@ const contentsReducer = (state=initialState, action) => {
           case GET_EMPLOYEE: {
             return {
               ...state,
-              employee: action.payload
+              employee: details(action.payload)
             };
           }
           

@@ -20,9 +20,9 @@
 
 .container .form {
   background-color: #f8f6fa;
-  max-width: 20%;
+  width: 23%;
   padding: 10px;
-  height: 60vh;
+  height: 63vh;
   border-radius: 10px;
 }
 
@@ -75,5 +75,19 @@
   color: black;
   border: none;
   text-transform: none;
+}
+
+@media (max-width: 700px) {
+  .container .form {
+    width: 80%;
+    height: 80%;
+  }
+}
+
+@media (max-width: 1000px) and (min-width: 710px) {
+  .container .form {
+    width: 45%;
+    height: 80%;
+  }
 }
 /*# sourceMappingURL=login.css.map */

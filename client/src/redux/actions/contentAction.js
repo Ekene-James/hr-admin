@@ -11,26 +11,7 @@ import {
 
 
  
-   export const demo =  (data,reset) =>async (dispatch) => {
-  
-  
-    try {
-        
-        
-        dispatch(isLoading(false))
-        
-      
-    } catch (errors) {
-        dispatch(isLoading(false))
-        console.log(errors.response.data)
-        dispatch({
-            type: GET_ALL_ERRORS,
-            payload: errors.response.data
-        })
-        
-        
-    }
-}
+ 
    export const createEmployee =  (datas,reset,history) =>async (dispatch) => {
     dispatch(clearErrors())
     dispatch(isLoading(true))
@@ -49,8 +30,8 @@ import {
       
     } catch (errors) {
         dispatch(isLoading(false))
-        console.log(errors.response.data.error)
-        alert( errors.response.data.error)
+        console.error(errors.response.data.error)
+        alert( 'Something went wrong, this is mostly due to total neglect of some fields or Network connection')
         dispatch({
             type: GET_ALL_ERRORS,
             payload: errors.response.data
@@ -63,11 +44,11 @@ import {
 export const getEmployees =  () =>async (dispatch) => {
     dispatch(clearErrors())
     
+    dispatch(isLoading(true))
     
     try {
-        dispatch(isLoading(true))
       const employees  = await axios.get("/api/employees")
-      console.log(employees)   
+      
       dispatch(isLoading(false))
        
       dispatch({
@@ -79,8 +60,8 @@ export const getEmployees =  () =>async (dispatch) => {
         
     } catch (errors) {
      
-       
-     console.log(errors.response.data)
+        alert( 'Something went wrong, try refreshing the page or check your network')
+     console.error(errors.response.data)
       
        
      dispatch(isLoading(false))

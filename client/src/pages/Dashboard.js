@@ -120,7 +120,7 @@ import { logOut } from '../redux/actions/authActions';
         startIcon='EM'
         
       >
-          <Link className={classes.link} to='/human-resource/employees-management'>
+          <Link className={classes.link} to='/dashboard'>
              Employee Management
           </Link>
        

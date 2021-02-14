@@ -10,37 +10,44 @@ import { connect } from "react-redux";
 import {  selectLoading} from './redux/reselectFunc/loadingReselect';
 import BackdropCompo from './components/boxComponent/backDrop/Backdrop';
 import { selectIsAuthenticated } from './redux/reselectFunc/authReselect';
-import Home from './pages/home/Home';
+
+import PrivateRoute from './utils/privateRoute';
 
 
 
 function App(props) {
-  if(props.loading){
-    return <BackdropCompo/>
-  }
+ 
   return (
    
        <Router> 
+         
         <Switch>
-        
-      
-             
-              <Route exact path='/login' component={Login}/>
+              
+              <Route
+                
+                path="/login"
+                render={() => {
+                  if(!props.isAuthenticated){
+                    return <Route path='/login' component={Login}/> 
+                  }
+                    return (
+                      
+                      <Redirect to="/dashboard" /> 
+                    )
+                }}
+              />
+              
               
           <Dashboard>
           <Route
-               exact
+                exact
                 path="/"
                 render={() => {
-                  if(props.isAuthenticated){
-                    return <EManagement/> 
-                  }else{
-                    return  <Redirect to='/login' /> 
-                  }   
+                  return <Redirect to="/dashboard" /> 
                 }}
               />
-  
-          <Route  path='/employees-management/add-employees' component={AddEmployee}/>
+          <PrivateRoute  path="/dashboard" component={EManagement} />
+          <PrivateRoute  path="/employees-management/add-employees" component={AddEmployee} />
           </Dashboard>
         </Switch>
         </Router> 

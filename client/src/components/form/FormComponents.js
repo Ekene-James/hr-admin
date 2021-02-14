@@ -1,5 +1,5 @@
 import TextField from '@material-ui/core/TextField';
-import Grid from '@material-ui/core/Grid';
+import NumberFormat from 'react-number-format';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import MenuItem from '@material-ui/core/MenuItem';
 
@@ -74,6 +74,26 @@ export const select = ({
               }}
               {...(touched && error && {error : true,helperText : error })}
             />
+        
+       
+      </div>
+    );
+  };
+  export const numberFormat = ({
+    input,
+    type,
+    placeholder,
+    id,
+    icon,
+    sm,
+    label,
+   
+    meta: { touched, error }
+  }) => {
+    return (
+      <div>
+        <NumberFormat value={input} displayType={'text'} thousandSeparator={true} prefix={'$'} />
+     
         
        
       </div>

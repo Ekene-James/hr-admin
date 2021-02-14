@@ -15,11 +15,17 @@ import {text, select} from '../../components/form/FormComponents'
 import { connect } from "react-redux";
 import { login } from '../../redux/actions/authActions';
 import { selectAuthError } from '../../redux/reselectFunc/errorReselect';
+import { selectLoading } from '../../redux/reselectFunc/loadingReselect';
+import BackdropCompo from '../../components/boxComponent/backDrop/Backdrop';
 
 export class Login extends Component {
     render() {
         
         const {handleSubmit, reset,errs,login,history} = this.props
+        if(this.props.loading){
+          return <BackdropCompo/>
+          }
+            
         return (
             <div className='container'>
                 
@@ -89,7 +95,8 @@ export class Login extends Component {
     }
 }
 const mapStateToProps = state => ({
-    errs : selectAuthError(state)
+    errs : selectAuthError(state),
+    loading : selectLoading(state)
   })
 
 export default reduxForm({

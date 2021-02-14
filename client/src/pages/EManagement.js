@@ -10,10 +10,13 @@ import { getEmployees } from '../redux/actions/contentAction';
 import { resetToken } from '../redux/actions/authActions';
 import { connect } from "react-redux";
 import { selectEmployee } from '../redux/reselectFunc/contentReselect';
+import { selectLoading } from '../redux/reselectFunc/loadingReselect';
+import BackdropCompo from '../components/boxComponent/backDrop/Backdrop';
 export class EManagement extends Component {
     componentDidMount(){
         this.props.resetToken();
-        if(!this.props.employee.data){
+
+        if(!this.props.employee){
           return  this.props.getEmployees()
 
         }
@@ -21,7 +24,11 @@ export class EManagement extends Component {
        
     }
     render (){
+const {totalEmployees,currentEmployees,pendingEmployees,temporaryEmployees,nyscEmployees,siwessEmployees} = this.props.employee
 
+if(this.props.loading){
+return <BackdropCompo/>
+}
         return (
             <div className='e-cont'>
                 <div className='tBar'>
@@ -43,31 +50,23 @@ export class EManagement extends Component {
                  Add Employee
               </Link>
            
-          </Button>
-            <Divider className='divider'/>
-                </Grid>
-                <Grid className='box-grid' item xs={6} sm={4}>
-                <BoxComponent text={'Total Employees'} color={'blue'} number={37}/>
+                </Button>
+                <Divider className='divider'/>
+             </Grid>
 
+                <Grid className='box-grid' item xs={12} sm={4}>
+                <BoxComponent text={'Total Employees'} color={'blue'} number={totalEmployees}/>
                 </Grid>
-                <Grid className='box-grid' item xs={6} sm={4}>  <BoxComponent  text={'Current Employees'} color={'blue'} number={37}/></Grid>
-                <Grid className='box-grid' item xs={6} sm={4}> <BoxComponent  text={'Pending Employees'} color={'blue'} number={1}/></Grid>
-                <Grid className='box-grid' item xs={6} sm={4}><BoxComponent  text={'KGM Direct Employees'}  number={5}/></Grid>
-                <Grid className='box-grid' item xs={6} sm={4}> <BoxComponent  text={'Temporary Employees'}  number={1}/></Grid>
-                <Grid className='box-grid' item xs={6} sm={4}><BoxComponent  text={'NYSC Employees'}  number={0}/></Grid>
-                <Grid className='box-grid' item xs={6} sm={4}><BoxComponent  text={'Expatriate Employees'}  number={0}/></Grid>
-                <Grid className='box-grid' item xs={6} sm={4}><BoxComponent  text={'Consultant Employees'}  number={0}/></Grid>
-                <Grid className='box-grid' item xs={6} sm={4}><BoxComponent  text={'SIWES Employees'}  number={0}/></Grid>
-                <Grid className='box-grid' item xs={6} sm={4}><BoxComponent  text={'Exited Employees'} color={'red'}  number={0}/></Grid>
-              
-               
-                
-               
-                
-                
-                
-                
-                
+                <Grid className='box-grid' item xs={12} sm={4}>  <BoxComponent  text={'Current Employees'} color={'blue'} number={currentEmployees}/></Grid>
+                <Grid className='box-grid' item xs={12} sm={4}> <BoxComponent  text={'Pending Employees'} color={'blue'} number={pendingEmployees}/></Grid>
+                <Grid className='box-grid' item xs={12} sm={4}><BoxComponent  text={'KGM Direct Employees'}  number={5}/></Grid>
+                <Grid className='box-grid' item xs={12} sm={4}> <BoxComponent  text={'Temporary Employees'}  number={temporaryEmployees}/></Grid>
+                <Grid className='box-grid' item xs={12} sm={4}><BoxComponent  text={'NYSC Employees'}  number={nyscEmployees}/></Grid>
+                <Grid className='box-grid' item xs={12} sm={4}><BoxComponent  text={'Expatriate Employees'}  number={0}/></Grid>
+                <Grid className='box-grid' item xs={12} sm={4}><BoxComponent  text={'Consultant Employees'}  number={0}/></Grid>
+                <Grid className='box-grid' item xs={12} sm={4}><BoxComponent  text={'SIWES Employees'}  number={siwessEmployees}/></Grid>
+                <Grid className='box-grid' item xs={12} sm={4}><BoxComponent  text={'Exited Employees'} color={'red'}  number={0}/></Grid>
+
     
                 </Grid>
                
@@ -77,6 +76,7 @@ export class EManagement extends Component {
    
 }
 const mapStateToProps = state => ({
-    employee : selectEmployee(state)
+    employee : selectEmployee(state),
+    loading : selectLoading(state)
 })
 export default connect(mapStateToProps, {resetToken,getEmployees})(EManagement)

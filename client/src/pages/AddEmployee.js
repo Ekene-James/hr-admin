@@ -25,6 +25,8 @@ import { createEmployee } from '../redux/actions/contentAction';
 import { resetToken } from '../redux/actions/authActions';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import { selectAllErrors } from '../redux/reselectFunc/errorReselect';
+import { selectLoading } from '../redux/reselectFunc/loadingReselect';
+import BackdropCompo from '../components/boxComponent/backDrop/Backdrop';
 function ColorlibStepIcon(props) {
   const classes = useColorlibStepIconStyles();
   const { active, completed } = props;
@@ -127,6 +129,9 @@ export class CustomizedSteppers extends Component {
         const steps = this.getSteps();
         
         const {activeStep} = this.state
+        if(this.props.loading){
+return <BackdropCompo/>
+}
         return (
             <div className={classes.root}>
                 <div className={classes.top}>Add Employees</div>
@@ -174,7 +179,7 @@ export class CustomizedSteppers extends Component {
 
                       </div>
                       {
-                        errs.error ? (<div className={classes.err}>{errs.error}</div>) : ('')
+                        errs.error ? (<div className={classes.err}>Something went wrong, this is mostly due to total neglect of some fields or Network connection</div>) : ('')
                       }
                     </div>
                   ) : (
@@ -204,7 +209,8 @@ export class CustomizedSteppers extends Component {
  
 }
 const mapStateToProps = state => ({
-  errs : selectAllErrors(state)
+  errs : selectAllErrors(state),
+  loading : selectLoading(state)
 })
 export default connect(mapStateToProps, {resetToken,createEmployee})
 (withStyles(useStyles)
