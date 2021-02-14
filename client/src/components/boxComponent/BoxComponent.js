@@ -8,7 +8,7 @@ import { colors } from '@material-ui/core';
 function BoxComponent(props) {
     const {color, text , number} = props
     return (
-        <Grid className='box-grid' item xs={6} sm={4}>
+        
              <div  className='box-main-cont'>
            
 
@@ -28,7 +28,7 @@ function BoxComponent(props) {
 
            
        </div>
-        </Grid>
+     
        
     )
 }

@@ -13,353 +13,229 @@ import Typography from '@material-ui/core/Typography';
 import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
 
 import BrandingWatermarkIcon from '@material-ui/icons/BrandingWatermark';
-
+import { reduxForm, Field } from 'redux-form';
+import {required, longEnough,isNumber, email, tooLong} from '../form/validation'
+import {text, select} from '../form/FormComponents'
 export class EmployeeInfo extends Component {
  
 
   render() {
-    const { values, handleChange } = this.props;
+    
+
     return (
       <div >
       <Grid container spacing={3}>
 
-      <Grid item xs={6}>
-        <TextField
-             variant="outlined"
-              placeholder="Staff Id*"
-              
-              onChange={handleChange('staffId')}
-              defaultValue={values.staffId}
-              margin="normal"
-              fullWidth
-              
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <BrandingWatermarkIcon />
-                  </InputAdornment>
-                ),
-              }}
-            />
-        </Grid>
       <Grid item xs={6} >
-        <TextField
-             variant="outlined"
-              placeholder="Official Email*"
-              
-              onChange={handleChange('officialEmail')}
-              defaultValue={values.officialEmail}
-              margin="normal"
-              fullWidth
-              
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <EmailIcon />
-                  </InputAdornment>
-                ),
-              }}
-            />
-        </Grid>
-
+      <Field
+        name="staffId"
+        type="text"
+        component={text}
+        
+        handleChange
+        placeholder="staffId"
+        icon={ <BrandingWatermarkIcon />}
+        validate={[required, isNumber,longEnough]}
+        
+      />
+      </Grid>
+      <Grid item xs={6} >
+      <Field
+        name="officialEmail"
+        label='official email'
+        component={text}
+        placeholder="Official Email"
+        icon={ <EmailIcon />}
+        validate={[email,required ]}
+        
+      />
+      </Grid>
       <Grid item xs={6} sm={4}>
-      <TextField
-              select
-              label ='Employment Type*'
-              variant="outlined"
-              onChange={handleChange('employmentType')}
-              defaultValue={values.employmentType}
-              margin="normal"
-              fullWidth
-              
-             
-            >
-              <MenuItem value='temporary employee'>
-              Temporary Employee
-            </MenuItem>
-              <MenuItem value='Nysc employee'>
-              Nysc employee
-            </MenuItem>
-              <MenuItem value='Siwess Employee'>
-              Siwess Employee
-            </MenuItem>
-             
-            </TextField>
-        </Grid>
+      <Field
+        name="employmentType"
+        options={['temporary employee', 'Nysc employee', 'Siwess Employee']}
+        
+        component={select}
+        label='Employment Type'
+        validate={[required]}
+      />
+      </Grid>
       <Grid item xs={6} sm={4}>
-      <TextField
-              select
-              label ='Employment Designation*'
-              variant="outlined"
-              onChange={handleChange('employeeDesignation')}
-              defaultValue={values.employeeDesignation}
-              margin="normal"
-              fullWidth
-              
-             
-            >
-              <MenuItem value='Executive'>
-              Executive
-            </MenuItem>
-              <MenuItem value='Staff'>
-              Staff
-            </MenuItem>
-              <MenuItem value='Head Of Department'>
-              Head Of Department
-            </MenuItem>
-             
-            </TextField>
-        </Grid>
+      <Field
+        name="employeeDesignation"
+        options={['Executive', 'Staff', 'Head Of Department']}
+        
+        component={select}
+        label='Employee Designation'
+        validate={[required]}
+      />
+      </Grid>
       <Grid item xs={6} sm={4}>
-      <TextField
-              select
-              label ='Employment Department*'
-              variant="outlined"
-              onChange={handleChange('employeeDepartment')}
-              defaultValue={values.employeeDepartment}
-              margin="normal"
-              fullWidth
-              
-             
-            >
-              <MenuItem value='Executive Management Office'>
-              Executive Management Office
-            </MenuItem>
-              <MenuItem value='Finance And Accounting'>
-              Finance And Accounting
-            </MenuItem>
-              <MenuItem value='Human Resource'>
-              Human Resource
-            </MenuItem>
-             
-            </TextField>
-        </Grid>
+      <Field
+        name="employeeDepartment"
+        options={['Executive Management Office', 'Finance And Accounting', 'Human Resource']}
+        
+        component={select}
+        label='employee Department '
+        validate={[required]}
+      />
+      </Grid>
       <Grid item xs={6} sm={4}>
-      <TextField
-              select
-              label ='Employment Status*'
-              variant="outlined"
-              onChange={handleChange('employeeStatus')}
-              defaultValue={values.employeeStatus}
-              margin="normal"
-              fullWidth
-              
-             
-            >
-              <MenuItem value='Confirmed'>
-              Confirmed
-            </MenuItem>
-              <MenuItem value='Probation'>
-              Probation
-            </MenuItem>
-              
-             
-            </TextField>
-        </Grid>
+      <Field
+        name="employeeStatus"
+        options={['Confirmed', 'Probation']}
+        
+        component={select}
+        label='employee Status'
+        validate={[required]}
+      />
+      </Grid>
       <Grid item xs={6} sm={4}>
-      <TextField
-              select
-              label ='Employment Confirmation*'
-              variant="outlined"
-              onChange={handleChange('employeeConfirmation')}
-              defaultValue={values.employeeConfirmation}
-              margin="normal"
-              fullWidth
-              
-             
-            >
-              <MenuItem value='true'>
-              Yes
-            </MenuItem>
-              <MenuItem value='false'>
-              No
-            </MenuItem>
-              
-             
-            </TextField>
-        </Grid>
+      <Field
+        name="employeeConfirmation"
+        options={['true', 'false']}
+        
+        component={select}
+        label='employee Confirmation'
+        validate={[required]}
+      />
+      </Grid>
       <Grid item xs={6} sm={4}>
-      <TextField
-              select
-              label ='Employment Location*'
-              variant="outlined"
-              onChange={handleChange('employeeLocation')}
-              defaultValue={values.employeeLocation}
-              margin="normal"
-              fullWidth
-              
-             
-            >
-              <MenuItem value='Corporate Head Office'>
-              Corporate Head Office
-            </MenuItem>
-              <MenuItem value='Lagos Office'>
-              Lagos Office
-            </MenuItem>
-              <MenuItem value='Warri Base'>
-              Warri Base
-            </MenuItem>
-              
-             
-            </TextField>
-        </Grid>
-      
-    
-      
-        <Grid item xs={6} sm={4}>
-        <TextField
-              
-              label ='Gross Salary*'
-              variant="outlined"
-              onChange={handleChange('grossSalary')}
-              defaultValue={values.grossSalary}
-              margin="normal"
-              fullWidth
-              
-             
-            />
-
-        </Grid>
-        <Grid item xs={6} sm={4}>
-        <TextField
-             variant="outlined"
-              
-              type="date"
-    
-              onChange={handleChange('doe')}
-              label='Set Date Of Employment*'
-              margin="normal"
-              fullWidth
-              InputLabelProps={{
-                shrink: true,
-              }}
-              
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <CalendarTodayIcon />
-                  </InputAdornment>
-                ),
-              }}
-            />
-        </Grid>
-        <Grid item xs={6} sm={4}>
-        <TextField
-             variant="outlined"
-              
-              type="date"
-              label= "Set Date Of Leaving*"
-              onChange={handleChange('dol')}
-              defaultValue={false}
-              margin="normal"
-              fullWidth
-              InputLabelProps={{
-                shrink: true,
-              }}
-              
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <CalendarTodayIcon />
-                  </InputAdornment>
-                ),
-              }}
-            />
-        </Grid>
-        <Grid item xs={12}>
+      <Field
+        name="employeeLocation"
+        options={['Corporate Head Office', 'Lagos Office', 'Warri Base']}
+        
+        component={select}
+        label='Employee Location'
+        validate={[required]}
+      />
+      </Grid>
+      <Grid item xs={6} sm={4}>
+      <Field
+        name="grossSalary"
+        type="text"
+        component={text}
+        label='gross salary'
+        placeholder="Gross Salary"
+        
+        validate={[required, isNumber,tooLong]}
+        
+      />
+      </Grid>
+      <Grid item xs={6} sm={4}>
+      <Field
+        name="doe"
+        
+        component={text}
+        type='date'
+        label="Set Date Of Employment"
+        icon={ <CalendarTodayIcon />}
+        validate={[required]}
+       
+        
+      />
+      </Grid>
+      <Grid item xs={6} sm={4}>
+      <Field
+        name="dol"
+        
+        component={text}
+        type='date'
+        label="Set Date Of Leave"
+        icon={ <CalendarTodayIcon />}
+        validate={[required]}
+       
+        
+      />
+      </Grid>
+      <Grid item xs={12}>
 
         <Typography>Referee Details</Typography>
         <Divider />
         </Grid>
-
         <Grid item xs={6} sm={4}>
-        <TextField
-             variant="outlined"
-              placeholder="Referee Name1*"
-              
-              onChange={handleChange('refereeName1')}
-              defaultValue={values.refereeName1}
-              margin="normal"
-              fullWidth
-              
-             
-            />
-        </Grid>
-        <Grid item xs={6} sm={4}>
-        <TextField
-             variant="outlined"
-              placeholder="Referee Adrress1*"
-              
-              onChange={handleChange('refereeAddress1')}
-              defaultValue={values.refereeAddress1}
-              margin="normal"
-              fullWidth
-              
-             
-            />
-        </Grid>
-        <Grid item xs={6} sm={4}>
-        <TextField
-             variant="outlined"
-              placeholder="Referee Phone1*"
-              
-              onChange={handleChange('refereePhone1')}
-              defaultValue={values.refereePhone1}
-              margin="normal"
-              fullWidth
-              
-             
-            />
-        </Grid>
+      <Field
+        name="refereeName1"
+        type="text"
+        component={text}
+        label='referee name1'
+        placeholder="referee Name1"
         
-      
-        <Grid item xs={6} sm={4}>
-        <TextField
-             variant="outlined"
-              placeholder="Referee Name2*"
-              
-              onChange={handleChange('refereeName2')}
-              defaultValue={values.refereeName2}
-              margin="normal"
-              fullWidth
-              
-             
-            />
-        </Grid>
-        <Grid item xs={6} sm={4}>
-        <TextField
-             variant="outlined"
-              placeholder="Referee Adrress2*"
-              
-              onChange={handleChange('refereeAddress2')}
-              defaultValue={values.refereeAddress2}
-              margin="normal"
-              fullWidth
-              
-             
-            />
-        </Grid>
-        <Grid item xs={6} sm={4}>
-        <TextField
-             variant="outlined"
-              placeholder="Referee Phone2*"
-              
-              onChange={handleChange('refereePhone2')}
-              defaultValue={values.refereePhone2}
-              margin="normal"
-              fullWidth
-              
-             
-            />
-        </Grid>
-
-
-      
+        validate={[required, tooLong]}
         
+      />
+      </Grid>
+        <Grid item xs={6} sm={4}>
+      <Field
+        name="refereeAddress1"
+        type="text"
+        component={text}
+        label='referee address1'
+        placeholder="referee Address1"
+        
+        validate={[required]}
+        
+      />
+      </Grid>
+      <Grid item xs={6} sm={4}>
+      <Field
+        name="refereePhone1"
+        type="text"
+        component={text}
+        label='referee phone1'
+        placeholder="Referee Phone Number1"
+        
+        validate={[required, isNumber,longEnough]}
+        
+      />
+      </Grid>
+
+
+
+
+      <Grid item xs={6} sm={4}>
+      <Field
+        name="refereeName2"
+        type="text"
+        component={text}
+        label='referee name2'
+        placeholder="referee Name2"
+        
+        validate={[required, tooLong]}
+        
+      />
+      </Grid>
+        <Grid item xs={6} sm={4}>
+      <Field
+        name="refereeAddress2"
+        type="text"
+        component={text}
+        label='referee address2'
+        placeholder="referee Address2"
+        
+        validate={[required]}
+        
+      />
+      </Grid>
+      <Grid item xs={6} sm={4}>
+      <Field
+        name="refereePhone2"
+        type="text"
+        component={text}
+        label='referee phone2'
+        placeholder="Referee Phone Number2"
+        
+        validate={[required, isNumber,longEnough]}
+        
+      />
+      </Grid>
       </Grid>
     </div>
     );
   }
 }
 
-export default EmployeeInfo;
+export default   reduxForm({
+  form: 'reduxForm',
+  destroyOnUnmount : false
+})(EmployeeInfo);

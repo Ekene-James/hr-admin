@@ -9,28 +9,17 @@ import EmailIcon from '@material-ui/icons/Email';
 import LockIcon from '@material-ui/icons/Lock';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import Button from '@material-ui/core/Button';
-
+import { reduxForm, Field } from 'redux-form';
+import {required, longEnough,isNumber, email, tooLong} from '../../components/form/validation'
+import {text, select} from '../../components/form/FormComponents'
 import { connect } from "react-redux";
 import { login } from '../../redux/actions/authActions';
+import { selectAuthError } from '../../redux/reselectFunc/errorReselect';
 
 export class Login extends Component {
-    constructor(){
-        super();
-        this.state = {
-            password : '',
-            email : ''
-        }
-    }
-
-    handleChange =  e => {
-        this.setState({ [e.target.name]: e.target.value });
-      };
-    onSubmit =  e => {
-        e.preventDefault()
-       this.props.login(this.state,this.props.history)
-      };
     render() {
-        const {password, email} = this.state
+        
+        const {handleSubmit, reset,errs,login,history} = this.props
         return (
             <div className='container'>
                 
@@ -38,46 +27,36 @@ export class Login extends Component {
                     
                     <Grid container spacing={3}>
                     <div className='top-bar'>Login</div>
+
                     <Grid item xs={12} >
-                        <TextField
-                            variant="outlined"
-                            label="Email"
-                            required
-                            onChange={this.handleChange}
-                            defaultValue={email}
-                            margin="normal"
-                            fullWidth
-                            name='email'
-                            InputProps={{
-                            endAdornment: (
-                            <InputAdornment position="end">
-                            <EmailIcon />
-                            </InputAdornment>
-                            ),
-                        }}
-                        />
+                    <Field
+                        name="email"
+                        type="text"
+                        component={text}
+                        
+                        placeholder="Email"
+                        icon={ <EmailIcon />}
+                        validate={[required, email]}
+                        
+                    />
                     </Grid>
-                    <Grid item xs={12} >
-                        <TextField
-                            variant="outlined"
-                            label="password"
-                            required
-                            onChange={this.handleChange}
-                            defaultValue={password}
-                            margin="normal"
-                            fullWidth
-                            name='password'
-                            type="password"
-                            InputProps={{
-                            endAdornment: (
-                            <InputAdornment position="end">
-                            <LockIcon />
-                            </InputAdornment>
-                            ),
-                        }}
-                        />
+                    <Grid item xs={12}>
+                    <Field
+                        name="password"
+                        type="password"
+                        component={text}
+                        
+                        placeholder="Password"
+                        icon={<LockIcon />}
+                        validate={[required, tooLong]}
+                        
+                    />
                     </Grid>
-                    <div class='err'>error</div>
+                  
+                    {
+                        errs ? (<div className='err'>{errs}</div>) : ('')
+                      }
+                    
                    
                     </Grid>
 
@@ -87,16 +66,15 @@ export class Login extends Component {
                       className ='button'
                         variant="contained"
                         color="primary"
-                        onClick= {this.onSubmit}
+                        onClick={  handleSubmit(val => login(val,history,reset) )}
+                       
                         endIcon={<ExitToAppIcon/>}
                       >
                         Lets Go
                     </Button>
                     <Button
                       className ='second-button'
-                        
-                        
-                        
+                         
                       >
                         Forgot your password ?
                     </Button>
@@ -110,5 +88,11 @@ export class Login extends Component {
         )
     }
 }
+const mapStateToProps = state => ({
+    errs : selectAuthError(state)
+  })
 
-export default connect(null, {login})(Login)
+export default reduxForm({
+    form: 'authForm',
+    destroyOnUnmount : false
+  })(connect(mapStateToProps, {login})(Login))

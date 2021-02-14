@@ -20,9 +20,11 @@ import EmployeeInfo from '../components/employeeInfo/EmployeeInfo';
 import OtherData from '../components/otherData/OtherData';
 import BankPension from '../components/bankPension/BankPension';
 import { connect } from "react-redux";
+import { reduxForm, Field } from 'redux-form';
 import { createEmployee } from '../redux/actions/contentAction';
 import { resetToken } from '../redux/actions/authActions';
-import { selectUser } from '../redux/reselectFunc/authReselect';
+import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import { selectAllErrors } from '../redux/reselectFunc/errorReselect';
 function ColorlibStepIcon(props) {
   const classes = useColorlibStepIconStyles();
   const { active, completed } = props;
@@ -53,60 +55,7 @@ export class CustomizedSteppers extends Component {
         super(props);
      
         this.state = { 
-            activeStep: 1,
-            firstName: '',
-            lastName: '',
-            personalEmail: '',
-            otherName : '',
-            gender : '',
-            maritalStatus : '',
-            phoneNumber : '',
-            dob : '',
-            nationality : '',
-            currentAddress : '',
-            permanentAddress : '',
-            state : '',
-            town : '',
-            staffId : '',
-            officialEmail: '',
-            employmentType: '',
-            employeeDesignation: '',
-            employeeDepartment: '',
-            employeeConfirmation: '',
-            employeeStatus: '',
-            employeeLocation: '',
-            grossSalary: '',
-            doe: '',
-            dol: '',
-            refereeName1: '',
-            refereeAddress1: '',
-            refereePhone1: '',
-            refereeName2: '',
-            refereeAddress2: '',
-            refereePhone2: '',
-            bankName: '',
-            accountNumber: '',
-            bankVerificationNumber: '',
-            pensionManager: '',
-            pensionNumber: '',
-            spouseFName: '',
-            spouseLName: '',
-            spousePhoneNumber: '',
-            spouseEmail: '',
-            numberOfChildren: '',
-            NOKFN: '',
-            NOKLN: '',
-            NOKPhone: '',
-            NOKAddress: '',
-            NOKEmail: '',
-            NOKRelationship: '',
-            emergName1: '',
-            emergAddress1: '',
-            emergPhone1: '',
-            emergName2: '',
-            emergAddress2: '',
-            emergPhone2: '',
-            errors : {},
+            activeStep: 0,
             completed : true
             
          };
@@ -120,142 +69,29 @@ export class CustomizedSteppers extends Component {
        getSteps =() => {
         return ['Personal Data', 'Employee Info', 'Bank and Pension', 'Other Data'];
       }
-
+     
     
        getStepContent= (step) =>{
-        const { 
-          firstName,
-          lastName,
-          personalEmail,
-          otherName,
-          gender,
-          maritalStatus,
-          phoneNumber,
-          dob,
-          nationality,
-          currentAddress,
-          permanentAddress,
-          state,
-          town,
-          staffId,
-          officialEmail,
-          employmentType,
-          employeeDesignation,
-          employeeDepartment,
-          employeeStatus,
-          employeeLocation,
-          employeeConfirmation,
-          grossSalary,
-          doe,
-          dol,
-          refereeName1,
-          refereeAddress1,
-          refereePhone1,
-          refereeName2,
-          refereeAddress2,
-          refereePhone2,
-          bankName,
-          accountNumber,
-          bankVerificationNumber,
-          pensionManager,
-          pensionNumber,
-          spouseFName,
-          spouseLName,
-          spousePhoneNumber,
-          spouseEmail,
-          numberOfChildren,
-          NOKFN,
-          NOKLN,
-          NOKPhone,
-          NOKAddress,
-          NOKEmail,
-          NOKRelationship,
-          emergName1,
-          emergAddress1,
-          emergPhone1,
-          emergName2,
-          emergAddress2,
-          emergPhone2,
-          errors
         
-        } = this.state;
-        const values = { 
-          firstName,
-          lastName,
-          personalEmail,
-          otherName,
-          gender,
-          maritalStatus,
-          phoneNumber,
-          dob,
-          nationality,
-          currentAddress,
-          permanentAddress,
-          state,
-          town,
-          staffId,
-          officialEmail,
-          employmentType,
-          employeeDesignation,
-          employeeDepartment,
-          employeeStatus,
-          employeeLocation,
-          employeeConfirmation,
-          grossSalary,
-          doe,
-          dol,
-          refereeName1,
-          refereeAddress1,
-          refereePhone1,
-          refereeName2,
-          refereeAddress2,
-          refereePhone2,
-          bankName,
-          accountNumber,
-          bankVerificationNumber,
-          pensionManager,
-          pensionNumber,
-          spouseFName,
-          spouseLName,
-          spousePhoneNumber,
-          spouseEmail,
-          numberOfChildren,
-          NOKFN,
-          NOKLN,
-          NOKPhone,
-          NOKAddress,
-          NOKEmail,
-          NOKRelationship,
-          emergName1,
-          emergAddress1,
-          emergPhone1,
-          emergName2,
-          emergAddress2,
-          emergPhone2,
-          errors
-
-         };
+      
         switch (step) {
           case 0:
             return <PersonalData
             
-            handleChange={this.handleChange}
-            values={values}
+           
             />;
           case 1:
             return <EmployeeInfo
-            handleChange={this.handleChange}
-            values={values}
+            
+            
             />;
           case 2:
             return <BankPension
-            handleChange={this.handleChange}
-            values={values}
+            
             />;
           case 3:
             return <OtherData
-            handleChange={this.handleChange}
-            values={values}
+           
             />;
           default:
             return 'Unknown step';
@@ -281,24 +117,12 @@ export class CustomizedSteppers extends Component {
             activeStep : 0
         })
     };
-    handleChange = input => e => {
-        this.setState({ [input]: e.target.value });
-      };
-      
+  
     
-    submit = e => {
-      e.preventDefault()
-      
-      this.props.createEmployee(this.state)
-      
-      
-    
-        
-      };
 
     render() {
-        const {classes} = this.props;
-        
+        const {classes,handleSubmit, reset,pristine, submitting, valid ,createEmployee,errs,history} = this.props;
+
 
         const steps = this.getSteps();
         
@@ -342,18 +166,16 @@ export class CustomizedSteppers extends Component {
                   </Button>
                     <Button  variant="contained"
                       color="primary"
-                       onClick={this.submit} 
+                      onClick={  handleSubmit(val => createEmployee(val,reset,history))}
+                      disabled={!valid || pristine || submitting}
                        className={classes.button}>
                     Submit
                   </Button>
 
                       </div>
-
                       {
-                        !this.state.completed ? (<div className={classes.err}>ooops, looks like you didnt fill some fields properly, please go back and review</div>) : ('')
+                        errs.error ? (<div className={classes.err}>{errs.error}</div>) : ('')
                       }
-
-                   
                     </div>
                   ) : (
                     <div className={classes.btnBody}>
@@ -367,7 +189,7 @@ export class CustomizedSteppers extends Component {
                       onClick={this.handleNext}
                       className={classes.button}
                     >
-                      {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+                      {activeStep === steps.length - 1 ? (<ArrowForwardIosIcon/>) : 'Next'}
                     </Button>
                   </div>
                   )
@@ -381,5 +203,13 @@ export class CustomizedSteppers extends Component {
 
  
 }
-
-export default connect(null, {resetToken,createEmployee})(withStyles(useStyles)(CustomizedSteppers))
+const mapStateToProps = state => ({
+  errs : selectAllErrors(state)
+})
+export default connect(mapStateToProps, {resetToken,createEmployee})
+(withStyles(useStyles)
+(reduxForm({
+  form: 'reduxForm',
+  destroyOnUnmount : false
+})
+(CustomizedSteppers)))

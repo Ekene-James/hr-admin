@@ -5,7 +5,9 @@ import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import MenuItem from '@material-ui/core/MenuItem';
 import EmailIcon from '@material-ui/icons/Email';
-
+import { reduxForm, Field } from 'redux-form';
+import {required, longEnough,isNumber, email, tooLong} from '../form/validation'
+import {text, select} from '../form/FormComponents'
 import Divider from '@material-ui/core/Divider';
 
 
@@ -16,7 +18,7 @@ export class OtherData extends Component {
  
 
   render() {
-    const { values, handleChange } = this.props;
+    
     return (
       <div >
       <Grid container spacing={3}>
@@ -26,263 +28,222 @@ export class OtherData extends Component {
 <Divider />
 </Grid>
 
-      <Grid item xs={6}>
-        <TextField
-             variant="outlined"
-              placeholder="Spouse First Name*"
-              
-              onChange={handleChange('spouseFName')}
-              defaultValue={values.spouseFName}
-              margin="normal"
-              fullWidth
-    
-            />
-        </Grid>
-      <Grid item xs={6} >
-        <TextField
-             variant="outlined"
-              placeholder="Spouse Last Name*"
-              
-              onChange={handleChange('spouseLName')}
-              defaultValue={values.spouseLName}
-              margin="normal"
-              fullWidth
- 
-            />
-        </Grid>
-      <Grid item xs={6} >
-        <TextField
-             variant="outlined"
-              placeholder="Spouse Phone Number*"
-              
-              onChange={handleChange('spousePhoneNumber')}
-              defaultValue={values.spousePhoneNumber}
-              margin="normal"
-              fullWidth
- 
-            />
-        </Grid>
-      <Grid item xs={6} >
-        <TextField
-             variant="outlined"
-              placeholder="Spouse Email Address*"
-              
-              onChange={handleChange('spouseEmail')}
-              defaultValue={values.spouseEmail}
-              margin="normal"
-              fullWidth
- 
-            />
-        </Grid>
-      <Grid item xs={12} >
-        <TextField
-             variant="outlined"
-              placeholder="Number of Children*"
-              
-              onChange={handleChange('numberOfChildren')}
-              defaultValue={values.numberOfChildren}
-              margin="normal"
-              fullWidth
- 
-            />
-        </Grid>
 
-        <Grid item xs={12}>
+
+     
+<Grid item xs={6}>
+      <Field
+        name="spouseFName"
+        type="text"
+        component={text}
+        label='Spouse first name'
+        placeholder="Spouse First Name "
+        
+        validate={[required, tooLong]}
+        
+      />
+      </Grid>
+<Grid item xs={6}>
+      <Field
+        name="spouseLName"
+        type="text"
+        component={text}
+        label='spouse last name'
+        placeholder="Spouse Last Name "
+        
+        validate={[required, tooLong]}
+        
+      />
+      </Grid>
+      <Grid item xs={6} >
+      <Field
+        name="spousePhoneNumber"
+        type="text"
+        component={text}
+        label='spouse phone'
+        placeholder="Spouse Phone Number"
+        
+        validate={[required, isNumber,longEnough]}
+        
+      />
+      </Grid>
+      <Grid item xs={6} >
+      <Field
+        name="spouseEmail"
+        type="text"
+        component={text}
+        label='spouse email'
+        placeholder="Spouse Email"
+        icon={ <EmailIcon />}
+        validate={[required, email]}
+        
+      />
+      </Grid>
+      <Grid item xs={12} >
+      <Field
+        name="numberOfChildren"
+        type="text"
+        component={text}
+        label='Number of children'
+        placeholder="Number of Children"
+       
+        validate={[required, isNumber]}
+        
+      />
+      </Grid>
+      <Grid item xs={12}>
 
 <Typography>Next Of Kin Details</Typography>
 <Divider />
 </Grid>
-           
-        <Grid item xs={6} >
-        <TextField
-              
-              label ='First Name *'
-              variant="outlined"
-              onChange={handleChange('NOKFN')}
-              defaultValue={values.NOKFN}
-              margin="normal"
-              fullWidth
-              
-             
-            />
-
-        </Grid>
-        <Grid item xs={6} >
-        <TextField
-              
-              label ='Last Name *'
-              variant="outlined"
-              onChange={handleChange('NOKLN')}
-              defaultValue={values.NOKLN}
-              margin="normal"
-              fullWidth
-              
-             
-            />
-
-        </Grid>
-        <Grid item xs={6} >
-        <TextField
-              
-              label ='Phone Number  *'
-              variant="outlined"
-              onChange={handleChange('NOKPhone')}
-              defaultValue={values.NOKPhone}
-              margin="normal"
-              fullWidth
-              
-             
-            />
-
-        </Grid>
-        <Grid item xs={6} >
-        <TextField
-             variant="outlined"
-              placeholder="Address*"
-              
-              onChange={handleChange('NOKAddress')}
-              defaultValue={values.NOKAddress}
-              margin="normal"
-              fullWidth
-              
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <HomeIcon />
-                  </InputAdornment>
-                ),
-              }}
-            />
-        </Grid>
-        <Grid item xs={6} >
-        <TextField
-              
-              label ='Email *'
-              variant="outlined"
-              onChange={handleChange('NOKEmail')}
-              defaultValue={values.NOKEmail}
-              margin="normal"
-              fullWidth
-              
-             
-            />
-
-        </Grid>
-
-        <Grid item xs={6} >
-      <TextField
-              select
-              label ='Relationship*'
-              variant="outlined"
-              onChange={handleChange('NOKRelationship')}
-              defaultValue={values.NOKRelationship}
-              margin="normal"
-              fullWidth
-              
-             
-            >
-              <MenuItem value='Spouse'>
-              Spouse
-            </MenuItem>
-              <MenuItem value='Mother'>
-              Mother
-            </MenuItem>
-              <MenuItem value='Father'>
-              Father
-            </MenuItem>
-             
-            </TextField>
-        </Grid>
+<Grid item xs={6} >
+      <Field
+        name="NOKFN"
+        type="text"
+        component={text}
+        label='NOK first name'
+        placeholder="NOK first Name"
        
-        <Grid item xs={12}>
-
-        <Typography>Emergency Contact</Typography>
-        <Divider />
-        </Grid>
-
-        <Grid item xs={6} sm={4}>
-        <TextField
-             variant="outlined"
-              placeholder="Emergency Name1*"
-              
-              onChange={handleChange('emergName1')}
-              defaultValue={values.emergName1}
-              margin="normal"
-              fullWidth
-              
-             
-            />
-        </Grid>
-        <Grid item xs={6} sm={4}>
-        <TextField
-             variant="outlined"
-              placeholder="Emergency Adrress1*"
-              
-              onChange={handleChange('emergAddress1')}
-              defaultValue={values.emergAddress1}
-              margin="normal"
-              fullWidth
-              
-             
-            />
-        </Grid>
-        <Grid item xs={6} sm={4}>
-        <TextField
-             variant="outlined"
-              placeholder="Emergency Phone1*"
-              
-              onChange={handleChange('emergPhone1')}
-              defaultValue={values.emergPhone1}
-              margin="normal"
-              fullWidth
-              
-             
-            />
-        </Grid>
+        validate={[required]}
         
-      
-        <Grid item xs={6} sm={4}>
-        <TextField
-             variant="outlined"
-              placeholder="Emergency Name2*"
-              
-              onChange={handleChange('emergName2')}
-              defaultValue={values.emergName2}
-              margin="normal"
-              fullWidth
-              
-             
-            />
-        </Grid>
-        <Grid item xs={6} sm={4}>
-        <TextField
-             variant="outlined"
-              placeholder="Emergency Adrress2*"
-              
-              onChange={handleChange('emergAddress2')}
-              defaultValue={values.emergAddress2}
-              margin="normal"
-              fullWidth
-              
-             
-            />
-        </Grid>
-        <Grid item xs={6} sm={4}>
-        <TextField
-             variant="outlined"
-              placeholder="Emergency Phone2*"
-              
-              onChange={handleChange('emergPhone2')}
-              defaultValue={values.emergPhone2}
-              margin="normal"
-              fullWidth
-              
-             
-            />
-        </Grid>
+      />
+      </Grid>
+<Grid item xs={6} >
+      <Field
+        name="NOKLN"
+        type="text"
+        component={text}
+        label='NOK last name'
+        placeholder="NOK Last Name"
+       
+        validate={[required]}
+        
+      />
+      </Grid>
+      <Grid item xs={6} >
+      <Field
+        name="NOKPhone"
+        type="text"
+        component={text}
+        label='NOK phone'
+        placeholder="NOK Phone Number"
+       
+        validate={[required, isNumber,longEnough]}
+        
+      />
+      </Grid>
+      <Grid item xs={6} >
+      <Field
+        name="NOKAddress"
+        type="text"
+        component={text}
+        icon={ <HomeIcon />}
+        placeholder="NOK Adress"
+        label='NOK address'
+        validate={[required]}
+        
+      />
+      </Grid>
+      <Grid item xs={6} >
+      <Field
+        name="NOKRelationship"
+        options={['Spouse', 'Mother', 'Father']}
+        
+        component={select}
+        label='Relationship'
+        validate={[required]}
+      />
+      </Grid>
+      <Grid item xs={6} >
+      <Field
+        name="NOKEmail"
+        type="text"
+        component={text}
+        label='NOK Email'
+        placeholder="NOK Email"
+        icon={ <EmailIcon />}
+        validate={[required, email]}
+        
+      />
+      </Grid>
+      <Grid item xs={12}>
 
+<Typography>Emergency Contact</Typography>
+<Divider />
+</Grid>
+<Grid item xs={6} sm={4}>
+      <Field
+        name="emergName1"
+        type="text"
+        component={text}
+        label='emergency name1'
+        placeholder="emergName1"
+       
+        validate={[required]}
+        
+      />
+      </Grid>
+<Grid item xs={6} sm={4}>
+      <Field
+        name="emergAddress1"
+        type="text"
+        component={text}
+        label='emergency address1'
+        placeholder="emergAddress1"
+       
+        validate={[required]}
+        
+      />
+      </Grid>
+      <Grid item xs={6} sm={4}>
+      <Field
+        name="emergPhone1"
+        type="text"
+        component={text}
+        label='emergency phone1'
+        placeholder="emergPhone1"
+        
+        validate={[required, isNumber,longEnough]}
+        
+      />
+      </Grid>
 
-      
+      <Grid item xs={6} sm={4}>
+      <Field
+        name="emergName2"
+        type="text"
+        component={text}
+        label='emergency name2'
+        placeholder="emergName2"
+       
+        validate={[required]}
+        
+      />
+      </Grid>
+<Grid item xs={6} sm={4}>
+      <Field
+        name="emergAddress2"
+        type="text"
+        component={text}
+        label='emergency adrress2'
+        placeholder="emergAddress2"
+       
+        validate={[required]}
+        
+      />
+      </Grid>
+      <Grid item xs={6} sm={4}>
+      <Field
+        name="emergPhone2"
+        type="text"
+        component={text}
+        label='emergency phone2'
+        placeholder="emergPhone2"
+        
+        validate={[required, isNumber,longEnough]}
+        
+      />
+      </Grid>
         
       </Grid>
     </div>
@@ -290,4 +251,7 @@ export class OtherData extends Component {
   }
 }
 
-export default OtherData;
+export default  reduxForm({
+  form: 'reduxForm',
+  destroyOnUnmount : false
+})(OtherData);

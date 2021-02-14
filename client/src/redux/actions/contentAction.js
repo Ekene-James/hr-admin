@@ -9,28 +9,48 @@ import {
    import {  isLoading,clearErrors} from './loadingActions'
   
 
+
  
- 
-   export const createEmployee =  (employee) =>async (dispatch) => {
-    dispatch(clearErrors())
-    dispatch(isLoading(true))
+   export const demo =  (data,reset) =>async (dispatch) => {
+  
   
     try {
-        const data =  await axios.post(`/api/employees`,employee)
+        
         
         dispatch(isLoading(false))
-        console.log(data.data)
-     
+        
       
-     
-        
-        
-        
-       
-        
     } catch (errors) {
         dispatch(isLoading(false))
         console.log(errors.response.data)
+        dispatch({
+            type: GET_ALL_ERRORS,
+            payload: errors.response.data
+        })
+        
+        
+    }
+}
+   export const createEmployee =  (datas,reset,history) =>async (dispatch) => {
+    dispatch(clearErrors())
+    dispatch(isLoading(true))
+    console.log(datas)
+    
+    
+  
+    try {
+        const data =  await axios.post(`/api/employees`,datas)
+        
+        dispatch(isLoading(false))
+        console.log(data.data)
+        reset()
+        alert( 'Form Submit Success!!!')
+        history.push('/human-resource/employees-management')
+      
+    } catch (errors) {
+        dispatch(isLoading(false))
+        console.log(errors.response.data.error)
+        alert( errors.response.data.error)
         dispatch({
             type: GET_ALL_ERRORS,
             payload: errors.response.data

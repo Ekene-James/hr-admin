@@ -46,16 +46,28 @@ export class EManagement extends Component {
           </Button>
             <Divider className='divider'/>
                 </Grid>
+                <Grid className='box-grid' item xs={6} sm={4}>
                 <BoxComponent text={'Total Employees'} color={'blue'} number={37}/>
-                <BoxComponent  text={'Current Employees'} color={'blue'} number={37}/>
-                <BoxComponent  text={'Pending Employees'} color={'blue'} number={1}/>
-                <BoxComponent  text={'KGM Direct Employees'}  number={5}/>
-                <BoxComponent  text={'Temporary Employees'}  number={1}/>
-                <BoxComponent  text={'NYSC Employees'}  number={0}/>
-                <BoxComponent  text={'Expatriate Employees'}  number={0}/>
-                <BoxComponent  text={'Consultant Employees'}  number={0}/>
-                <BoxComponent  text={'SIWES Employees'}  number={0}/>
-                <BoxComponent  text={'Exited Employees'} color={'red'}  number={0}/>
+
+                </Grid>
+                <Grid className='box-grid' item xs={6} sm={4}>  <BoxComponent  text={'Current Employees'} color={'blue'} number={37}/></Grid>
+                <Grid className='box-grid' item xs={6} sm={4}> <BoxComponent  text={'Pending Employees'} color={'blue'} number={1}/></Grid>
+                <Grid className='box-grid' item xs={6} sm={4}><BoxComponent  text={'KGM Direct Employees'}  number={5}/></Grid>
+                <Grid className='box-grid' item xs={6} sm={4}> <BoxComponent  text={'Temporary Employees'}  number={1}/></Grid>
+                <Grid className='box-grid' item xs={6} sm={4}><BoxComponent  text={'NYSC Employees'}  number={0}/></Grid>
+                <Grid className='box-grid' item xs={6} sm={4}><BoxComponent  text={'Expatriate Employees'}  number={0}/></Grid>
+                <Grid className='box-grid' item xs={6} sm={4}><BoxComponent  text={'Consultant Employees'}  number={0}/></Grid>
+                <Grid className='box-grid' item xs={6} sm={4}><BoxComponent  text={'SIWES Employees'}  number={0}/></Grid>
+                <Grid className='box-grid' item xs={6} sm={4}><BoxComponent  text={'Exited Employees'} color={'red'}  number={0}/></Grid>
+              
+               
+                
+               
+                
+                
+                
+                
+                
     
                 </Grid>
                

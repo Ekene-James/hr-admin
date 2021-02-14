@@ -20,7 +20,7 @@ const store = createStore(
    const storePersistor = persistStore(store);
 
 ReactDOM.render(
-  <Provider store={store}> <PersistGate persistor={storePersistor}>
+  <Provider store={store}> <PersistGate loading={null} persistor={storePersistor}>
   <App />
 </PersistGate></Provider>
     

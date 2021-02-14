@@ -19,7 +19,7 @@ import {
 
 
 
-export const login =  (cred,history) =>async (dispatch) => {
+export const login =  (cred,history,reset) =>async (dispatch) => {
     console.log('in login')
     dispatch(clearErrors())
     try {
@@ -37,13 +37,14 @@ export const login =  (cred,history) =>async (dispatch) => {
             decoded,
             type
         }
+        reset()
         dispatch(isLoading(false))
         dispatch({
             type: SET_CURRENT_USER,
             payload: data
         });
       
-        history.push("/human-resource/employees-management")
+        history.push("/")
        
         
     } catch (errors) {
@@ -52,7 +53,7 @@ export const login =  (cred,history) =>async (dispatch) => {
         dispatch(isLoading(false))
         dispatch({
             type: AUTH_ERROR,
-            payload: errors.response
+            payload: errors.response.data.error
         })
         
         
