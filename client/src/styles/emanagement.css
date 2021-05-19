@@ -20,17 +20,25 @@
   padding: 40px;
 }
 
-.e-cont .grid-cont .btn {
+.e-cont .grid-cont .btn-cont {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.e-cont .grid-cont .btn-cont .btn {
   margin-bottom: 10px;
   background: #10505c;
 }
 
-.e-cont .grid-cont .btn .link {
+.e-cont .grid-cont .btn-cont .btn .link {
   color: white;
   text-decoration: none;
-}
-
-.e-cont .grid-cont .divider {
-  margin-bottom: 40px;
 }
 /*# sourceMappingURL=emanagement.css.map */

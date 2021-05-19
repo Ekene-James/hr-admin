@@ -12,6 +12,7 @@ import BackdropCompo from './components/boxComponent/backDrop/Backdrop';
 import { selectIsAuthenticated } from './redux/reselectFunc/authReselect';
 
 import PrivateRoute from './utils/privateRoute';
+import ViewEmployees from './pages/ViewEmployees';
 
 
 
@@ -48,6 +49,7 @@ function App(props) {
               />
           <PrivateRoute  path="/dashboard" component={EManagement} />
           <PrivateRoute  path="/employees-management/add-employees" component={AddEmployee} />
+          <PrivateRoute  path="/employees-management/view-employees" component={ViewEmployees} />
           </Dashboard>
         </Switch>
         </Router> 

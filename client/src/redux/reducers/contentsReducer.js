@@ -1,11 +1,13 @@
 import {
+  DELETE_EMPLOYEE,
   GET_EMPLOYEE,
     
  
   } from "../type";
-import { details } from "./employeeDataUtils";
+import { deleteEmployee, details } from "./employeeDataUtils";
 const initialState= {
-    employee: ''
+    employee: '',
+    employees : []
 }
 const contentsReducer = (state=initialState, action) => {
     switch(action.type){
@@ -13,9 +15,18 @@ const contentsReducer = (state=initialState, action) => {
           case GET_EMPLOYEE: {
             return {
               ...state,
-              employee: details(action.payload)
+              employee: details(action.payload),
+              employees: action.payload
             };
           }
+          case DELETE_EMPLOYEE: {
+            return {
+              ...state,
+              employees: deleteEmployee(action.payload,state.employees) 
+            };
+          }
+        
+
           
          
         

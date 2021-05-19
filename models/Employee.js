@@ -155,7 +155,7 @@ const EmployeeSchema = new mongoose.Schema({
     enum: [
       "Access Bank Plc",
       "Ecobank Nigeria",
-      "Fidelity Bank Plc",
+      "Fidelity Bank",
       "First Bank Nigeria Limited",
       "Zenith Bank Plc"
     ]

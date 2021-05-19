@@ -96,7 +96,7 @@ import { logOut } from '../redux/actions/authActions';
         <AccountBoxIcon fontSize="large" />
       </Fab>
           </ListItemIcon>
-          <ListItemText className={classes.itemText} primary="Lawson Loctech" />
+          <ListItemText className={classes.itemText} primary="AJAX" />
         </ListItem>
 
         
@@ -137,17 +137,9 @@ import { logOut } from '../redux/actions/authActions';
           
         <LockIcon />
       
-          <ListItemText  onClick={ logout} className={classes.itemText} primary="LogOut" />
+          <ListItemText  onClick={ logout} className={classes.itemText} primary="Log Out" />
         </ListItem>
-      <ListItem button>
-          
-        <GitHubIcon />
-      
-          <Link to={{pathname : 'https://github.com/Ekene-James/loctech'}} target='_blanck'> <ListItemText  className={classes.itemText} primary="Link To the github repo" /></Link>
-        </ListItem>
-       
-     
-        
+ 
       </Drawer>
       <main
         className={clsx(classes.content, {

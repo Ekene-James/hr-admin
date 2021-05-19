@@ -16,21 +16,21 @@
     }
     .grid-cont{
         padding: 40px;
-        .btn{
-            margin-bottom: 10px;
-            background: rgb(16, 80, 92);
-            .link{
-                color: white;
-                text-decoration: none;
-            }
-        }
-        .divider{
-            margin-bottom: 40px;
-        }
-        .box{
-            
-        }
-
+       .btn-cont{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+           .btn{
+               margin-bottom: 10px;
+               background: rgb(16, 80, 92);
+               .link{
+                   color: white;
+                   text-decoration: none;
+               }
+           }
+       }
+       
+       
     }
 
 }

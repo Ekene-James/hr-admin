@@ -1,9 +1,8 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
+
 import Grid from '@material-ui/core/Grid';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import MenuItem from '@material-ui/core/MenuItem';
+
 import { reduxForm, Field } from 'redux-form';
 import {required, longEnough,isNumber, email, tooLong} from '../form/validation'
 import {text, select} from '../form/FormComponents'

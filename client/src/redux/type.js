@@ -2,6 +2,7 @@
 export const IS_LOADING = "IS_LOADING";
 
 export const  GET_USER = " GET_USER";
+export const  DELETE_EMPLOYEE = " DELETE_EMPLOYEE";
 
 export const SET_CURRENT_USER = "SET_CURRENT_USER";
 export const LOGOUT = "LOGOUT";

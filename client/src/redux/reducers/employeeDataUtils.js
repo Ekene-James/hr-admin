@@ -22,3 +22,12 @@ export const details = (data) => {
   return detail
     
   };
+
+  export const deleteEmployee = (id,details) => {
+    const detail = details.data.filter(detail => detail._id !== id);
+    return {
+      ...details,
+      data : detail
+    }
+
+  }

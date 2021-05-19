@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
 import PersonIcon from '@material-ui/icons/Person';
-import TextField from '@material-ui/core/TextField';
+
 import Grid from '@material-ui/core/Grid';
 import { reduxForm, Field } from 'redux-form';
 import {required, longEnough,isNumber, email, tooLong} from '../form/validation'
 import {text, select} from '../form/FormComponents'
-import InputAdornment from '@material-ui/core/InputAdornment';
-import MenuItem from '@material-ui/core/MenuItem';
+
 import EmailIcon from '@material-ui/icons/Email';
 import PhoneIcon from '@material-ui/icons/Phone';
 import PublicIcon from '@material-ui/icons/Public';
 import HomeIcon from '@material-ui/icons/Home';
 import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
 export class PersonalData extends Component {
-
+  
   render() {
+    
 
     return (
       <div >
@@ -28,6 +28,7 @@ export class PersonalData extends Component {
         placeholder="Last Name"
         icon={<PersonIcon />}
         validate={[required, tooLong]}
+        
         
       />
       </Grid>

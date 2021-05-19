@@ -3,6 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
 import  '../styles/emanagement.css'
 import Button from '@material-ui/core/Button';
+import VisibilityIcon from '@material-ui/icons/Visibility';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import BoxComponent from '../components/boxComponent/BoxComponent';
@@ -16,7 +17,7 @@ export class EManagement extends Component {
     componentDidMount(){
         this.props.resetToken();
 
-        if(!this.props.employee){
+        if(!this.props.employee || this.props.employee.totalEmployees === 0){
           return  this.props.getEmployees()
 
         }
@@ -35,24 +36,42 @@ return <BackdropCompo/>
                     Employee Summary
                 </div>
                 <Grid className='grid-cont' container spacing={3}>
-                <Grid item xs={12}>
-    
-                <Button
-                    disableElevation
-                    variant="contained"
-                    color="primary"
-                    size="small"
-                    className='btn'
-                    startIcon={<AddCircleOutlineIcon/>}
+                    <Grid className='btn-cont' item xs={12}>
+                
+                        
+                        <Button
+                            disableElevation
+                            variant="contained"
+                            color="primary"
+                            size="small"
+                            className='btn'
+                            startIcon={<AddCircleOutlineIcon/>}
+                            
+                        >
+                            <Link className='link'  to='/employees-management/add-employees'>
+                                Add Employee
+                            </Link>
+
+                        </Button>
+                        <Button
+                            disableElevation
+                            variant="contained"
+                            color="primary"
+                            size="small"
+                            className='btn'
+                            startIcon={<VisibilityIcon/>}
+                            
+                        >
+                            <Link className='link'  to='/employees-management/view-employees'>
+                                View Employees
+                            </Link>
+
+                        </Button>
                     
-                >
-              <Link className='link'  to='/employees-management/add-employees'>
-                 Add Employee
-              </Link>
-           
-                </Button>
-                <Divider className='divider'/>
-             </Grid>
+                   
+                    </Grid>
+                    <Divider className='divider'/>
+               
 
                 <Grid className='box-grid' item xs={12} sm={4}>
                 <BoxComponent text={'Total Employees'} color={'blue'} number={totalEmployees}/>

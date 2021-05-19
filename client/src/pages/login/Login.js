@@ -65,6 +65,9 @@ export class Login extends Component {
                     
                    
                     </Grid>
+                    <span>
+                      Hint : test@gmail.com 123456
+                    </span>
 
 
                     <Grid className='btn-container' item xs={12}>
